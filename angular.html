@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html>
+<html>
+<script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.6.9/angular.min.js"></script>
+<body>
+
+<div ng-app="myapp" ng-controller="myctrl">
+<input type="text" ng-model="task1" value="" />
+<button ng-click="add()">add</button>
+<table border="1">
+  <tr>
+   
+    <th>taskname</th>
+    <th>edit</th>
+    <th>delete</th>
+  </tr>
+  <tr ng-repeat="(index,task) in tasks">
+    
+    <td>{{task}}</td>
+    <td><button type="button" ng-click="edit(index)">edit</button></td>
+    <td><button type="button" ng-click="delete(index)">delete</button></td>
+  </tr>
+</table>
+<script>
+  var app=angular.module("myapp",[]);
+  app.controller("myctrl",function($scope){
+   
+   $scope.tasks=[];
+  $scope.task="";
+    $scope.add= function() {
+      $scope.tasks.push($scope.task1);
+      $scope.task1="";
+      
+    };
+    $scope.delete= function(index){
+      $scope.tasks.splice(index,1);
+    };
+    $scope.edit= function(index){
+      $scope.tasks[index]=$scope.task1;
+      $scope.task1="";
+    }
+  }
+  
+  );
+</script>
+
+</div>
+</body>
+</html>
